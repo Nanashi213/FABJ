@@ -7,12 +7,15 @@ from CONEXION_BD.Connection import conexion
 from PyQt5.QtWidgets import QMessageBox
 
 class Empleados(conexion):
+    def __init__(self) -> None:
+        self.m_fail="Fail"
+        self.m_ing_obl='Debe ingresar datos en los campos con *' #Datos obligatorios
 
     def insert_empl(self,idemp,nombre,apellido,direccion,telefono,maquina):
         if nombre!="" and apellido!="" and idemp!="" and telefono!="" :
             if idemp.isdigit() and idemp.isdigit():
                 if self.rev_cod(idemp):
-                    QMessageBox.information(None, 'Fail', 'El ID ya esta registrado')
+                    QMessageBox.information(None, self.m_fail, 'El ID ya esta registrado')
                 else:
                     if  direccion == "":
                         with self.conn.cursor() as cursor:
@@ -27,9 +30,9 @@ class Empleados(conexion):
                             self.conn.commit()
                             QMessageBox.information(None, 'Success', 'Empleado Agregado')
             else:
-                QMessageBox.information(None, 'Fail', 'ID y Telefono deben ser numeros')
+                QMessageBox.information(None, self.m_fail, 'ID y Telefono deben ser numeros')
         else:
-            QMessageBox.information(None, 'Fail', 'Debe ingresar datos en los campos con *')
+            QMessageBox.information(None, self.m_fail,self.m_ing_obl)
 
 
     def list_empl(self):
@@ -95,7 +98,7 @@ class Empleados(conexion):
                 self.conn.commit()
                 QMessageBox.information(None, 'Success', 'Maquina Agregada')
         else:
-            QMessageBox.information(None, 'Fail', 'Debe ingresar datos en los campos con *')
+            QMessageBox.information(None, self.m_fail,self.m_ing_obl)
 
     def insert_ope(self,nombre,precio,maquina):
         if nombre != "" and precio!="":
@@ -107,9 +110,9 @@ class Empleados(conexion):
                         self.conn.commit()
                         QMessageBox.information(None, 'Success', 'Operacion Agregada')
             else:
-                QMessageBox.information(None, 'Fail', 'Precio debe ser numero positivo sin signos')
+                QMessageBox.information(None, self.m_fail, 'Precio debe ser numero positivo sin signos')
         else:
-            QMessageBox.information(None, 'Fail', 'Debe ingresar datos en los campos con *')
+            QMessageBox.information(None, self.m_fail, 'Debe ingresar datos en los campos con *')
 
 
  

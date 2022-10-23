@@ -6,7 +6,8 @@ sys.path.append(myDir)
 
 from CONEXION_BD.Connection import conexion
 from PyQt5.QtWidgets import QMessageBox
-from datetime import *
+
+
 class Gastos(conexion):
 
     def insert_gasto(self,fecha,descripcion,total):
@@ -32,10 +33,10 @@ class Gastos(conexion):
             if result:
                 return result
 
-    def bus_gas_num(self, NUM):
+    def bus_gas_num(self, num):
         with self.conn.cursor() as cursor:
             sql = """SELECT * FROM gastos WHERE NUMG = %s;"""
-            cursor.execute(sql,(NUM))
+            cursor.execute(sql,(num))
             result = cursor.fetchall()
             if result:
                 return result

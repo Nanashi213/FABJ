@@ -90,18 +90,6 @@ class Clientes(conexion):
 
 
 
-#---------------PRUEBAS------------
-'''
-A1 = Clientes()
-A1.obtclie()
-A1.act_clie(1233,"Stop","EMPRESA","PEREIRA",312312)
-print(A1.bus_clie(1233)) 
-
-A1 = Clientes()
-print(A1.clie_abo(3213))'''
-
-
-
 
 
 
